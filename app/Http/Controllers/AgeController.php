@@ -7,22 +7,31 @@ use Illuminate\Http\Request;
 class AgeController extends Controller
 {
 	public function index()
- 	{
- 		return view('ifelse.index');
-    
+	{
+		return view('ifelse.index');
+
 	}
 
 	public function show(Request $request)
- 	{ 
- 		$age = $request->input('Age');
-		if($age < 40){
-			$message = 'you are a young person';
-		} else 
-		{
-			$message = 'you are an elderly person'; 
+	{ 
+		$age = $request->input('Age');
+		$gender = $request->input('Gender');
+		$message ='';
+		if($age < 40) {
+			if($gender == 'female'){
+				$message = ' you are a girl';
+			}else {
+				$message = ' you are a boy ';
+			}
+		} else 	{
+			if($gender == 'female'){
+				$message = ' gogo'; 
+			} else{
+				$message = 'sekuru';
+			}
 		}
 
- 		return view('ifelse.result')->with('message',$message);
-    
+		return view('ifelse.result')->with('message',$message);
+
 	}
 }
